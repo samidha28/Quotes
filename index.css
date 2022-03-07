@@ -1,0 +1,138 @@
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  }
+  :root {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 1.5);
+  }
+  
+  
+body {
+    min-height: 100vh;
+    background: #212534;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+  }
+
+  .card{
+       background: #191c29;
+       width: var(--card-width);
+       height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  color: white;
+margin: 20px;
+  }
+
+  
+  #quotes, #author, i{
+      padding:10px;
+  }
+  .card:hover {
+    color: #FFCCD2;
+    transition: color 1s;
+  }
+  .card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      , #F6B8B8, #AC66CC 43%, #00C897);
+      position: absolute;
+      z-index: -1;
+      top: -1%;
+      left: -2%;
+      animation: spin 2.5s linear infinite;
+  }
+
+  .card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+      var(--rotate)
+      , #FFE4C0, #85F4FF 43%, #42C2FF);
+      opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+  }
+  
+  button {
+    border: none;
+    display: inline-block;
+    border-radius: 99px;
+    color: white;
+    position: relative;
+    z-index: 1;
+    font-size: 0.6em;
+    padding: 1.7em 2em;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin-top: 3em;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+  
+  button:before, 
+  button:after {
+    content: ' ';
+    position: absolute;
+    border-radius: 99px;
+  }
+  
+  button:before {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -2;
+    background: linear-gradient(var(--rotate), #503b9a ,#269cc1);
+  }
+  
+  button:after {
+    top: 2px; 
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    background-color: black;
+    z-index: -1;
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+  }
+  
+  button:hover:after {
+    opacity: 0;
+  }
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+  
